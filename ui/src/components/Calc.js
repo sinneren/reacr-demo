@@ -3,6 +3,16 @@ import React, { Component } from 'react';
 export default class Calc extends Component {
     constructor(props) {
         super(props);
+        this.inputMoneyChange = this.inputMoneyChange.bind(this);
+    }
+    inputMoneyChange(e) {
+        if (e.target.value.length > 0) {
+            e.target.value = e.target.value.replace(/₽/gi, '').replace(/ /g, '') + ' ₽';
+            // console.log(e.target.parentNode.parentNode.querySelectorAll('.CalcTable_Input').length);
+            const nextInputs = document.createElement('div');
+            nextInputs.className = 'CalcTable_Input';
+            e.target.parentNode.parentNode.insertBefore(nextInputs, e.target.parentNode.nextSibling);
+        }
     }
     render() {
         return (
@@ -24,7 +34,7 @@ export default class Calc extends Component {
                             <div>Заработок</div>
                             <div className="CalcTable_Input">
                                 <input type="text" placeholder="Зарплата" />
-                                <input type="text" placeholder="0 Р" />
+                                <input type="text" placeholder="0 ₽" onChange={this.inputMoneyChange} />
                             </div>
                         </div>
                     </div>
@@ -44,7 +54,7 @@ export default class Calc extends Component {
                             <div>Траты</div>
                             <div className="CalcTable_Input">
                                 <input type="text" placeholder="Зарплата" />
-                                <input type="text" placeholder="0 Р" />
+                                <input type="text" placeholder="0 ₽" onChange={this.inputMoneyChange} />
                             </div>
                         </div>
                     </div>
