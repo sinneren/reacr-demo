@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import MainList from './MainList';
+import List from './List';
 const AppData = {
     items: [
         {
             id: 1,
-            title: 'Lorem Ipsum it Dolore sit amet',
-            date: '12.10.2017'
+            title: 'Ссылка на тестовую страницу для демо React-Router',
+            date: '19.10.2017'
         },
         {
             id: 2,
@@ -34,7 +34,8 @@ export default class Main extends Component {
     render() {
         return (
             <div className="Main">
-                <MainList data={AppData} />
+                <h1>Демо React</h1>
+                <List data={AppData} />
             </div>
         );
     }

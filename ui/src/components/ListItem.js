@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 const ItemData = [
     {
         id: 1,
-        title : 'Lorem Ipsum'
+        title: 'Тестовая страница для демо React-Router'
     },
     {
         id: 2,
@@ -27,8 +26,9 @@ export default class ListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: ItemData[props.match.params.id]
+            item: ItemData[props.match.params.id - 1]
         }
+        console.log(props.match.params.id);
     }
     render() {
         return (

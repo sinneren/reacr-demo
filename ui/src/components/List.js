@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class MainList extends Component {
+export default class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
             list: props.data.items
         }
-        console.log(this.state.list);
     }
     render() {
         const list = this.state.list.map((item) => {
