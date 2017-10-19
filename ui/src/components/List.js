@@ -15,6 +15,7 @@ export default class List extends Component {
         return (
             <div className="List">
                 {list}
+                <Link to={'calc/'}>Калькулятор доход/расход</Link>
             </div>
         );
     }

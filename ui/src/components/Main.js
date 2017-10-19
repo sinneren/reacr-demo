@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from './List';
+
 const AppData = {
     items: [
         {
@@ -9,21 +10,6 @@ const AppData = {
         },
         {
             id: 2,
-            title: 'Lorem Ipsum it Dolore sit amet',
-            date: '12.10.2017'
-        },
-        {
-            id: 3,
-            title: 'Lorem Ipsum it Dolore sit amet',
-            date: '12.10.2017'
-        },
-        {
-            id: 4,
-            title: 'Lorem Ipsum it Dolore sit amet',
-            date: '12.10.2017'
-        },
-        {
-            id: 5,
             title: 'Lorem Ipsum it Dolore sit amet',
             date: '12.10.2017'
         }
