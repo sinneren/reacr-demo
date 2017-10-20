@@ -2,27 +2,22 @@ import React, { Component } from 'react';
 export default class InputGroup extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            value: 0,
-            stateless: 0
-        }
+        this.onChange = this.onChange.bind(this);
     }
-    inputMoneyChange(e) {
+    onChange(e) {
         if (e.target.value.length > 0) {
             const val = e.target.value.replace(/₽/gi, '').replace(/ /g, '');
-            this.setState({ value: val });
-            if (e.target.value.length === 1) {
-                this.setState({ stateless: 1 });
-            }
+            this.props.onInputChange(val, 1)
         } else {
-            this.setState({ stateless: 0 });
+            this.props.onInputChange(0, 0)
         }
     }
     render() {
+        let val = this.props.sum;
         return (
             <div className="CalcTable_Input">
                 <input type="text" placeholder="Зарплата" />
-                <input type="text" placeholder={this.state.value + ' ₽'} value={this.state.value + ' ₽'} onChange={value => this.inputMoneyChange(value)} />
+                <input type="text" placeholder={val + ' ₽'} value={(val > 0) ? val + ' ₽' : ''} onChange={this.onChange} />
             </div>
         );
     }
