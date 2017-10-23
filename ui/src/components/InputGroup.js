@@ -5,11 +5,11 @@ export default class InputGroup extends Component {
         this.onChange = this.onChange.bind(this);
     }
     onChange(e) {
-        if (e.target.value.length > 0) {
-            const val = e.target.value.replace(/₽/gi, '').replace(/ /g, '');
-            this.props.onInputChange(val, 1)
+        //const val = e.target.value.replace(/₽/gi, '').replace(/ /g, '');
+        if (this.props.onInputDebitChange) {
+            this.props.onInputDebitChange(this.props.id, e.target.value, e.target.value.length);
         } else {
-            this.props.onInputChange(0, 0)
+            this.props.onInputCreditChange(this.props.id, e.target.value, e.target.value.length);
         }
     }
     render() {
@@ -17,7 +17,7 @@ export default class InputGroup extends Component {
         return (
             <div className="CalcTable_Input">
                 <input type="text" placeholder="Зарплата" />
-                <input type="text" placeholder={val + ' ₽'} value={(val > 0) ? val + ' ₽' : ''} onChange={this.onChange} />
+                <input type="text" placeholder='0 ₽' id={this.props.id} value={(val > 0) ? val : ''} onChange={this.onChange} />
             </div>
         );
     }
