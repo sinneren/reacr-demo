@@ -26,11 +26,15 @@ export default class Calc extends Component {
         let debitSum = 0;
         let creditSum = 0;
 
-        for (var arrLength = debitArr.length; arrLength > 0; arrLength--) {
-            debitSum += parseInt(+debitArr[arrLength - 1].value)
+        for (var arrLength = debitArr.length; arrLength >= 0; arrLength--) {
+            if (arrLength !== 0) {
+                debitSum += parseInt(+debitArr[arrLength - 1].value)
+            }
         }
-        for (var arrLength = creditArr.length; arrLength < 0; arrLength--) {
-            creditSum += parseInt(+creditArr[arrLength - 1].value)
+        for (var arrLength = creditArr.length; arrLength >= 0; arrLength--) {
+            if (arrLength !== 0) {
+                creditSum += parseInt(+creditArr[arrLength - 1].value)
+            }
         }
         let summary = debitSum - creditSum;
         this.setState({
@@ -40,42 +44,46 @@ export default class Calc extends Component {
     onInputDebitChange(id, val, st) {
         let valuesArr = this.state.debit;
         valuesArr[id] = {
-            value: val
+            value: parseInt(+val)
         }
         this.setState({
             debit: valuesArr
         });
         if (st === 1) {
-            valuesArr.push({ value: 0 });
-            this.setState({
-                debit: valuesArr
-            })
+            if (id !== valuesArr.length - 2) {
+                valuesArr.push({ value: 0 });
+                this.setState({
+                    debit: valuesArr
+                });
+            }
         } else if (st === 0) {
             valuesArr.pop();
             this.setState({
                 debit: valuesArr
-            })
+            });
         }
         this.calculateSum();
     }
     onInputCreditChange(id, val, st) {
         let valuesArr = this.state.credit;
         valuesArr[id] = {
-            value: val
+            value: parseInt(+val)
         }
         this.setState({
             credit: valuesArr
         });
         if (st === 1) {
-            valuesArr.push({ value: '' });
-            this.setState({
-                credit: valuesArr
-            })
+            if (id !== valuesArr.length - 2) {
+                valuesArr.push({ value: 0 });
+                this.setState({
+                    credit: valuesArr
+                });
+            }
         } else if (st === 0) {
             valuesArr.pop();
             this.setState({
                 credit: valuesArr
-            })
+            });
         }
         this.calculateSum();
     }
@@ -103,7 +111,6 @@ export default class Calc extends Component {
                         <div className="CalcTable_Wrapper">
                             <div>Траты</div>
                             {creditInputs}
-                            {/* <InputGroup sum={value} onInputChange={this.onInputChange} /> */}
                         </div>
                     </div>
                     <div className="CalcSeparator">=</div>
