@@ -26,14 +26,14 @@ export default class Calc extends Component {
         let debitSum = 0;
         let creditSum = 0;
 
-        for (var arrLength = debitArr.length; arrLength >= 0; arrLength--) {
+        for (let arrLength = debitArr.length; arrLength >= 0; arrLength--) {
             if (arrLength !== 0) {
-                debitSum += parseInt(+debitArr[arrLength - 1].value)
+                debitSum += parseInt(+debitArr[arrLength - 1].value, 10)
             }
         }
-        for (var arrLength = creditArr.length; arrLength >= 0; arrLength--) {
+        for (let arrLength = creditArr.length; arrLength >= 0; arrLength--) {
             if (arrLength !== 0) {
-                creditSum += parseInt(+creditArr[arrLength - 1].value)
+                creditSum += parseInt(+creditArr[arrLength - 1].value, 10)
             }
         }
         let summary = debitSum - creditSum;
@@ -44,7 +44,7 @@ export default class Calc extends Component {
     onInputDebitChange(id, val, st) {
         let valuesArr = this.state.debit;
         valuesArr[id] = {
-            value: parseInt(+val)
+            value: parseInt(+val, 10)
         }
         this.setState({
             debit: valuesArr
@@ -67,7 +67,7 @@ export default class Calc extends Component {
     onInputCreditChange(id, val, st) {
         let valuesArr = this.state.credit;
         valuesArr[id] = {
-            value: parseInt(+val)
+            value: parseInt(+val, 10)
         }
         this.setState({
             credit: valuesArr
@@ -90,11 +90,11 @@ export default class Calc extends Component {
     render() {
         const debitInputs = [];
         this.state.debit.forEach((item,index) => {
-            debitInputs.push(<InputGroup sum={item.value} key={index} id={index} onInputDebitChange={this.onInputDebitChange} />);
+            debitInputs.push(<InputGroup placeholder="Зарплата" sum={item.value} key={index} id={index} onInputDebitChange={this.onInputDebitChange} />);
         });
         const creditInputs = [];
         this.state.credit.forEach((item, index) => {
-            creditInputs.push(<InputGroup sum={item.value} key={index} id={index} onInputCreditChange={this.onInputCreditChange} />);
+            creditInputs.push(<InputGroup placeholder="Аренда" sum={item.value} key={index} id={index} onInputCreditChange={this.onInputCreditChange} />);
         });
         return (
             <div className="Calc">
